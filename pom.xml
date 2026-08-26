@@ -59,21 +59,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<scope>compile</scope>
 		</dependency>
 
 		<!-- Source: https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>compile</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-docker-compose -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-docker-compose</artifactId>
-			<scope>compile</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -87,7 +86,7 @@
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-spring-boot-docker-compose</artifactId>
 			<version>2.0.1</version>
-			<scope>compile</scope>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
