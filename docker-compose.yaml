@@ -1,15 +1,16 @@
 version: "3.8"
 services:
+  # el servicio es la forma en la que el docker compose reconoce tus apps dentro del compose
   postgres_db:
     container_name: "postgres_db"
     image: "postgres:16-alpine"
     env_file: ./.env
     ports:
-      - ${DB_LOCAL_PORT}:${DB_DOCKER_PORT} # 5435:5432
+      - ${DB_LOCAL_PORT}:${DB_DOCKER_PORT}
     environment:
-      POSTGRES_USER: ${POSTGRES_USER} # postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # 123
-      POSTGRES_DB: ${POSTGRES_DB} # bookstore
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-data:${DB_VOLUME_URL}
 

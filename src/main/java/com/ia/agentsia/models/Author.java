@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,29 +14,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-// @Entity(name = "book_table")
 @Entity
-public class Book {
+public class Author {
 
     @Id
-    // UUID y dejarlo como cadena
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
+    private Integer idAuthor;
 
     @Column(nullable = false, length = 50)
-    private String name;
+    private String firstName;
 
-    @Column(nullable = false, length = 2000)
-    private String review;
+    @Column(nullable = false, length = 50)
+    private String lastName;
 
-    @ManyToOne
-    @JoinColumn(name = "id_author", nullable = false)
-    private Author author;
+    @Column(nullable = false, length = 35)
+    private String country;
 
     @Column(nullable = false, length = 500)
-    private String urlCover;
-
-    @Column
-    private Boolean enabled;
+    private String urlPhoto;
 
 }
