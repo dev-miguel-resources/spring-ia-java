@@ -11,6 +11,7 @@ import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -43,4 +44,15 @@ public class ToolController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/book")
+    public ResponseEntity<String> getBookInfo(@RequestParam String bookName) {
+        UserMessage userMessage = new UserMessage("¿Cuál es la información de este libro " + bookName + "?");
+
+        ChatResponse chatResponse = openAiChatModel.call(new Prompt(List.of(userMessage),
+                OpenAiChatOptions.builder().toolNames("bookInfoFunction").build()));
+
+        String result = chatResponse.getResult().getOutput().getText();
+
+        return ResponseEntity.ok(result);
+    }
 }
