@@ -6,7 +6,11 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   ai:
     openai:
-      api-key: XXXX # Aquí deben poner la suya
-      
+      api-key: XXXXX # Aquí deben poner la suya
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
             
           
