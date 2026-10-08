@@ -6,7 +6,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   ai:
     openai:
-      api-key: XXXXX # Aquí deben poner la suya
+      api-key: XXXX # Aquí deben poner la suya
       #image:
       #  options:
       #    model: dall-e-2
@@ -18,3 +18,8 @@ spring:
         repository:
           jdbc:
             initialize-schema: always
+server:
+  port: 8080
+  max-http-request-header-size: 10MB
+      
+      
