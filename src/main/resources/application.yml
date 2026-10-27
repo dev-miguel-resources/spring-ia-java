@@ -6,13 +6,20 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   ai:
     openai:
-      api-key: XXXXX # Aquí deben poner la suya
+      api-key: XXXX # Aquí deben poner la suya
       #image:
       #  options:
       #    model: dall-e-2
       #chat:
       #  options:
       #    model: gpt-4o
+    vectorstore:
+      chroma:
+        client:
+          host: http://localhost
+          port: 8000
+        #collection-name: SpringAiCollection
+        #initialize-schema: true
     chat:
       memory:
         repository:
