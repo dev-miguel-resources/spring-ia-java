@@ -1,12 +1,12 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     generate-ddl: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    # database-platform: org.hibernate.dialect.PostgreSQLDialect
   ai:
     openai:
-      api-key: XXXX # Aquí deben poner la suya
+      api-key: XXXXXX # Aquí deben poner la suya
       #image:
       #  options:
       #    model: dall-e-2
@@ -28,7 +28,9 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
-      max-request-size: 10MB 
+      max-request-size: 10MB
 server:
   port: 8080
-
+app:
+  qr:
+    base-url: http://localhost:8080/api/event/scan/
