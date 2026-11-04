@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ia.agentsia.dtos.RegisterAttendeeDTO;
 import com.ia.agentsia.models.Attendee;
 import com.ia.agentsia.services.EventService;
+import com.ia.agentsia.services.VoiceService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class QREventController {
 
     private final EventService service;
+    private final VoiceService voiceService;
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> register(@Valid @RequestBody RegisterAttendeeDTO request) {
@@ -55,6 +57,18 @@ public class QREventController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"qr_" + attendee.getId() + ".png\"")
                 .contentType(MediaType.IMAGE_PNG)
                 .body(pngData);
+    }
+
+    @GetMapping(value = "/scan/{qrCode}/welcome-audio", produces = "audio/mpeg")
+    public ResponseEntity<byte[]> getWelcomeAudio(@PathVariable String qrCode) {
+
+        Attendee attendee = service.findByQr(qrCode);
+
+        byte[] audioBytes = voiceService.generateWelcomeAudio(attendee.getName());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"welcome_" + attendee.getId() + ".mp3\"")
+                .body(audioBytes);
     }
 
 }
